@@ -44,7 +44,7 @@ def cerrar_navegador():
     while "Brave" not in aw.title:
         with pyg.hold("alt"):
             pyg.press("tab")
-    with pyg("alt"):
+    with pyg.hold("alt"):
         pyg.press
     return
 
