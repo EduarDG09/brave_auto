@@ -38,7 +38,7 @@ webs = ["https://2captcha.com/",
 surfing = False
 
 def abrir_navegador(web): 
-    webbrowser.open(web)
+    webbrowser.open_new_tab(web)
 
 def cerrar_navegador():
     aw = pyg.getActiveWindow()
@@ -47,8 +47,11 @@ def cerrar_navegador():
             pyg.press("right")
         aw = pyg.getActiveWindow()
         time.sleep(1)
-    with pyg.hold("alt"):
-        pyg.press("f4")
+    with pyg.hold("ctrl"):
+        pyg.press("t")
+        pyg.press("1")
+        time.sleep(.5)
+        pyg.press("w")
     return
 
 while True:
