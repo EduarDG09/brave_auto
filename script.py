@@ -41,9 +41,12 @@ def abrir_navegador(web):
 
 def cerrar_navegador():
     aw = pyg.getActiveWindow()
-    print(aw)
-    with pyg.hold("alt"):
-        pyg.press("f4")
+    while "Brave" not in aw.title:
+        with pyg.hold("alt"):
+            pyg.press("tab")
+    with pyg("alt"):
+        pyg.press
+    return
 
 while True:
     rand_web = random.choice(webs)
