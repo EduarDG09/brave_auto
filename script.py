@@ -38,8 +38,9 @@ webs = ["https://2captcha.com/",
 
 def abrir_navegador(): 
     rand_web = random.choice(webs)
+    print(rand_web)
     webbrowser.open(rand_web)
     time.sleep(3)
-    subprocess.call("taskkill /f /im javaw.exe", shell=True)
+    subprocess.call("taskkill /f /im brave.exe", shell=True)
 
 abrir_navegador()
