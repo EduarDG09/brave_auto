@@ -41,3 +41,4 @@ def abrir_navegador():
     time.sleep(3000)
     os.system("taskkill /f /im brave.exe")
 
+abrir_navegador()
