@@ -1,7 +1,7 @@
 # Script para automatizar Brave Browser --
 
 # imports 
-import webbrowser, time, os, random
+import webbrowser, time, subprocess, random
 
 # includes
 webs = ["https://2captcha.com/",
@@ -39,6 +39,6 @@ def abrir_navegador():
     rand_web = random.choice(webs)
     webbrowser.open(rand_web)
     time.sleep(3000)
-    os.system("taskkill /f /im brave.exe")
+    subprocess.call("taskkill /f /im javaw.exe", shell=True)
 
 abrir_navegador()
