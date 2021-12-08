@@ -41,12 +41,10 @@ def abrir_navegador(web):
 
 def cerrar_navegador():
     aw = pyg.getActiveWindow()
-    count = 0
     while "Brave" not in aw.title:
         with pyg.hold("alt"):
             pyg.press("tab")
-        if (count > 5):
-            return
+        time.sleep(1)
     with pyg.hold("alt"):
         pyg.press("f4")
     return
