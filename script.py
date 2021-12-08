@@ -36,11 +36,15 @@ webs = ["https://2captcha.com/",
 "https://www.ganardineroenblog.info/ganar-dinero-con-hitleap/",
 ]
 
-def abrir_navegador(): 
-    rand_web = random.choice(webs)
-    print(rand_web)
-    webbrowser.open(rand_web)
-    time.sleep(3)
+def abrir_navegador(web): 
+    webbrowser.open(web)
+
+def cerrar_navegador():
     subprocess.call("taskkill /f /im brave.exe", shell=True)
 
-abrir_navegador()
+while True:
+    rand_web = random.choice(webs)
+    abrir_navegador(rand_web)
+    time.sleep(20)
+    cerrar_navegador()
+    time.sleep(3)
