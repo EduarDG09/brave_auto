@@ -2,6 +2,7 @@
 
 # imports 
 import webbrowser, time, subprocess, random
+import pyautogui as pyg
 
 # includes
 webs = ["https://2captcha.com/",
@@ -38,7 +39,7 @@ webs = ["https://2captcha.com/",
 def abrir_navegador(): 
     rand_web = random.choice(webs)
     webbrowser.open(rand_web)
-    time.sleep(3000)
+    time.sleep(3)
     subprocess.call("taskkill /f /im javaw.exe", shell=True)
 
 abrir_navegador()
