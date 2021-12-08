@@ -40,7 +40,10 @@ def abrir_navegador(web):
     webbrowser.open(web)
 
 def cerrar_navegador():
-    subprocess.call("taskkill /f /im brave.exe", shell=True)
+    aw = pyg.getActiveWindow()
+    print(aw)
+    with pyg.hold("alt"):
+        pyg.press("f4")
 
 while True:
     rand_web = random.choice(webs)
