@@ -45,7 +45,7 @@ def cerrar_navegador():
         with pyg.hold("alt"):
             pyg.press("tab")
     with pyg.hold("alt"):
-        pyg.press
+        pyg.press("f4")
     return
 
 while True:
