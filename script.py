@@ -60,12 +60,12 @@ while True:
         abrir_navegador(rand_web)
     else:
         now = datetime.now()
-        diff = now - lastMouseMove
-        if (diff.total_seconds() >= 10):
-            pyg.moveRel(20, 20, .5)
+        if ((now - lastMouseMove).total_seconds() >= 10):
+            width, height = pyg.size()
+            pyg.moveTo(random.randrange(0, width), random.randrange(0, height), .5)
             lastMouseMove = datetime.now()
-        if (diff.total_seconds() >= endSurfing):
+        if ((now - lastSurf).total_seconds() >= endSurfing):
             cerrar_navegador()
-            lastSurf = datetime.now()
+            lastSurf = datetime.now ()
             surfing = False
 
