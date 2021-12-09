@@ -39,8 +39,8 @@ surfing = False
 firstTime = True
 lastMouseMove = datetime.now()
 lastSurf = datetime.now()
-startedSurfing = 0
-stopAt = 120
+startedSurfing = datetime.now()
+stopAt = 240
 
 def openBrowser(web): 
     webbrowser.open(web)
@@ -66,8 +66,6 @@ def closePrevTab():
 while True:
     if (surfing == False):
         rand_web = random.choice(webs)
-        startedSurfing = datetime.now()
-        stopAt = 240
         surfing = True
         openBrowser(rand_web)
         if (firstTime == True):
@@ -91,8 +89,10 @@ while True:
             closePrevTab()
             time.sleep(random.randint(60, 120))
             surfing = False
+            startedSurfing = datetime.now()
+            stopAt = 240
             continue
-        if ((now - lastSurf).total_seconds() >= random.choice([30, (60), (120)])):
+        if ((now - lastSurf).total_seconds() >= random.choice([(60), (120)])):
             lastSurf = datetime.now()
             surfing = False
         
