@@ -71,8 +71,9 @@ while True:
         surfing = True
         openBrowser(rand_web)
         if (firstTime == True):
-            closePrevTab()
             firstTime = False
+            continue
+        closePrevTab()
     else:
         now = datetime.now()
         if (random.randint(1, 6) == 3):
