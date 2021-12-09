@@ -62,10 +62,7 @@ while True:
         diff = now - lastMouseMove
         if (diff.total_seconds >= 3):
             pyg.moveRel(10, 10, .5)
-        elif (diff.total_seconds >= endSurfing):
+        if (diff.total_seconds >= endSurfing):
             cerrar_navegador()
             surfing = False
 
-
-    cerrar_navegador()
-    time.sleep(3)
