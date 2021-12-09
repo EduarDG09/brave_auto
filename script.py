@@ -40,7 +40,7 @@ firstTime = True
 lastMouseMove = datetime.now()
 lastSurf = datetime.now()
 startedSurfing = datetime.now()
-stopAt = 240
+stopAt = random.choice([(2*60*60), (60*60), (3*60*60)])
 pagTime = random.choice([(20*60), (15*60), (30*60)])
 
 def openBrowser(web): 
@@ -80,7 +80,7 @@ while True:
             aw = pyg.getActiveWindow()
             time.sleep(15)
         now = datetime.now()
-        if (random.randint(1, 8) == 3):
+        if (random.randint(1, 10) == 3):
             pyg.scroll(-100)
         if ((now - lastMouseMove).total_seconds() >= random.choice([10, 30, 45, 5])):
             width, height = pyg.size()
