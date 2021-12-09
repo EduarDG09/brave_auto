@@ -80,7 +80,7 @@ while True:
         time.sleep(1)
         now = datetime.now()
         if (random.randint(1, 8) == 3):
-            pyg.scroll(-50)
+            pyg.scroll(-100)
         if ((now - lastMouseMove).total_seconds() >= random.choice([10, 30, 45, 5])):
             width, height = pyg.size()
             pyg.moveTo(random.randrange(0, width), random.randrange(0, height), .5)
@@ -91,6 +91,7 @@ while True:
             time.sleep(random.randint(60, 120))
             surfing = False
             startedSurfing = datetime.now()
+            lastSurf = datetime.now()
             stopAt = 240
             continue
         if ((now - lastSurf).total_seconds() >= random.choice([(60), (120)])):
