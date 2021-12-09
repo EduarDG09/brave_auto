@@ -69,7 +69,7 @@ while True:
             width, height = pyg.size()
             pyg.moveTo(random.randrange(0, width), random.randrange(0, height), .5)
             lastMouseMove = datetime.now()
-        if ((now - lastSurf).total_seconds() >= random.choice([(30*60), (60*60), (45*60)])):
+        if ((now - lastSurf).total_seconds() >= random.choice([30, (60), (120)])):
             closeBrowser()
             lastSurf = datetime.now ()
             surfing = False
@@ -80,4 +80,6 @@ while True:
             time.sleep(1)
             openBrowser("https://google.com")
             time.sleep(random.randint(60, 120))
+            closeBrowser()
+            
 
