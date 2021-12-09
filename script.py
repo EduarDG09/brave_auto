@@ -1,6 +1,7 @@
 # Script para automatizar Brave Browser --
 
 # imports 
+from datetime import datetime
 import webbrowser, time, subprocess, random
 import pyautogui as pyg
 
@@ -36,29 +37,35 @@ webs = ["https://2captcha.com/",
 "https://www.ganardineroenblog.info/ganar-dinero-con-hitleap/",
 ]
 surfing = False
+lastMouseMove = datetime.now()
+endSurfing = 20
 
 def abrir_navegador(web): 
-    webbrowser.open_new_tab(web)
+    webbrowser.open(web)
+    surfing = True
 
 def cerrar_navegador():
     aw = pyg.getActiveWindow()
     while "Brave" not in aw.title:
-        with pyg.hold("alt"):
-            pyg.press("right")
         aw = pyg.getActiveWindow()
         time.sleep(1)
     with pyg.hold("ctrl"):
-        pyg.press("t")
-        pyg.press("1")
-        time.sleep(.5)
-        pyg.press("w")
+        pyg.press("f4")
     return
 
 while True:
-    if surfing == False:
+    if (surfing == False):
         rand_web = random.choice(webs)
         abrir_navegador(rand_web)
+    else:
+        now = datetime.now()
+        diff = now - lastMouseMove
+        if (diff.total_seconds >= 3):
+            pyg.moveRel(10, 10, .5)
+        elif (diff.total_seconds >= endSurfing):
+            cerrar_navegador()
+            surfing = False
 
-    time.sleep(20)
+
     cerrar_navegador()
     time.sleep(3)
