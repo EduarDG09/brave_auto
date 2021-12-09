@@ -41,6 +41,7 @@ lastMouseMove = datetime.now()
 lastSurf = datetime.now()
 startedSurfing = datetime.now()
 stopAt = 240
+pagTime = random.choice([(20*60), (15*60), (30*60)])
 
 def openBrowser(web): 
     webbrowser.open(web)
@@ -83,18 +84,19 @@ while True:
             pyg.scroll(-100)
         if ((now - lastMouseMove).total_seconds() >= random.choice([10, 30, 45, 5])):
             width, height = pyg.size()
-            pyg.moveTo(random.randrange(0, width), random.randrange(80, height-80), .5)
+            pyg.moveTo(random.randrange(0, width), random.randrange(80, height-80), .75)
             lastMouseMove = datetime.now()
         if ((now - startedSurfing).total_seconds() >= stopAt):
             openBrowser("https://google.com")
             closePrevTab()
-            time.sleep(random.randint(60, 120))
+            time.sleep(random.choice([(5*60*60), (8*60*60), (12*60*60)]))
             surfing = False
             startedSurfing = datetime.now()
             lastSurf = datetime.now()
-            stopAt = 240
+            stopAt = random.choice([(2*60*60), (60*60), (3*60*60)])
             continue
-        if ((now - lastSurf).total_seconds() >= random.choice([(60), (120)])):
+        if ((now - lastSurf).total_seconds() >= pagTime):
+            pagTime = random.choice([(20*60), (15*60), (30*60)])
             lastSurf = datetime.now()
             surfing = False
         
