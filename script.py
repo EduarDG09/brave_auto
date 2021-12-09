@@ -92,14 +92,16 @@ while True:
             pyg.moveTo(random.randrange(0, width), random.randrange(80, height-80), .75)
             lastMouseMove = datetime.now()
         if ((now - lastSurf).total_seconds() >= pagTime):
-            logging.INFO("Tiempo gastado en la página: " + str(pagTime) )
+            logging.INFO("Tiempo gastado en la página: " + str(pagTime) + " segundos.")
             pagTime = random.choice([(20*60), (15*60), (30*60)])
             lastSurf = datetime.now()
             surfing = False
         if ((now - startedSurfing).total_seconds() >= stopAt):
             openBrowser("https://google.com")
             closePrevTab()
-            time.sleep(random.choice([(5*60*60), (8*60*60), (12*60*60)]))
+            sleepFor = random.choice([(5*60*60), (8*60*60), (12*60*60)])
+            logging.INFO("Descansando por: " + str(sleepFor/3600) + " horas.")
+            time.sleep(sleepFor)
             surfing = False
             startedSurfing = datetime.now()
             lastSurf = datetime.now()
