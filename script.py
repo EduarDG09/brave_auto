@@ -2,10 +2,11 @@
 
 # imports 
 from datetime import datetime
-import webbrowser, time, subprocess, random
+import webbrowser, time, logging, random
 import pyautogui as pyg
 
 # globals
+logging.basicConfig(filename="log.txt", filemode="a", format="%(asctime)s,%(msecs)d %(levelname)s %(message)s") 
 webs = ["https://2captcha.com/",
 "https://forobeta.com/",
 "https://raidforums.com/",
@@ -44,6 +45,7 @@ stopAt = random.choice([(2*60*60), (60*60), (3*60*60)])
 pagTime = random.choice([(20*60), (15*60), (30*60)])
 
 def openBrowser(web): 
+    logging.INFO("Navegando " + web + "...")
     webbrowser.open(web)
 
 def closeBrowser():
@@ -54,6 +56,7 @@ def closeBrowser():
     with pyg.hold("ctrl"):
         pyg.press("f4")
     return
+
 def closePrevTab():
     time.sleep(1)
     aw = pyg.getActiveWindow()
@@ -65,6 +68,7 @@ def closePrevTab():
         time.sleep(.5)
         pyg.press("w")
 
+logging.INFO("Inicia el bot!")
 while True:
     if (surfing == False):
         rand_web = random.choice(webs)
@@ -79,6 +83,7 @@ while True:
         while "Brave" not in aw.title or not hasattr(aw, "title"):
             aw = pyg.getActiveWindow()
             time.sleep(15)
+        
         now = datetime.now()
         if (random.randint(1, 10) == 3):
             pyg.scroll(-100)
@@ -86,6 +91,11 @@ while True:
             width, height = pyg.size()
             pyg.moveTo(random.randrange(0, width), random.randrange(80, height-80), .75)
             lastMouseMove = datetime.now()
+        if ((now - lastSurf).total_seconds() >= pagTime):
+            logging.INFO("Tiempo gastado en la página: " + str(pagTime) )
+            pagTime = random.choice([(20*60), (15*60), (30*60)])
+            lastSurf = datetime.now()
+            surfing = False
         if ((now - startedSurfing).total_seconds() >= stopAt):
             openBrowser("https://google.com")
             closePrevTab()
@@ -95,9 +105,5 @@ while True:
             lastSurf = datetime.now()
             stopAt = random.choice([(2*60*60), (60*60), (3*60*60)])
             continue
-        if ((now - lastSurf).total_seconds() >= pagTime):
-            pagTime = random.choice([(20*60), (15*60), (30*60)])
-            lastSurf = datetime.now()
-            surfing = False
         
 
