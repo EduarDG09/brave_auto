@@ -54,6 +54,7 @@ def closeBrowser():
         pyg.press("f4")
     return
 def closePrevTab():
+    time.sleep(1)
     aw = pyg.getActiveWindow()
     while "Brave" not in aw.title:
         aw = pyg.getActiveWindow()
