@@ -9,7 +9,6 @@ import pyautogui as pyg
 webs = ["https://2captcha.com/",
 "https://forobeta.com/",
 "https://raidforums.com/",
-"https://www.blackhatworld.com/",
 "https://foro-ptc.com/index.php",
 "https://www.idle-empire.com/",
 "https://eurekasurveys.com/",
@@ -37,6 +36,7 @@ webs = ["https://2captcha.com/",
 "https://www.ganardineroenblog.info/ganar-dinero-con-hitleap/",
 ]
 surfing = False
+firstTime = True
 lastMouseMove = datetime.now()
 lastSurf = datetime.now()
 startedSurfing = 0
@@ -70,9 +70,12 @@ while True:
         stopAt = 240
         surfing = True
         openBrowser(rand_web)
+        if (firstTime == True):
+            closePrevTab()
+            firstTime = False
     else:
         now = datetime.now()
-        if (random.randint(1, 3) == 3):
+        if (random.randint(1, 6) == 3):
             pyg.scroll(-50)
         if ((now - lastMouseMove).total_seconds() >= random.choice([10, 30, 45, 5])):
             width, height = pyg.size()
@@ -86,7 +89,6 @@ while True:
             time.sleep(random.randint(60, 120))
             closeBrowser()
         if ((now - lastSurf).total_seconds() >= random.choice([30, (60), (120)])):
-            closeBrowser()
             lastSurf = datetime.now()
             surfing = False
         
