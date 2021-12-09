@@ -38,7 +38,8 @@ webs = ["https://2captcha.com/",
 ]
 surfing = False
 lastMouseMove = datetime.now()
-endSurfing = 20
+lastSurf = datetime.now()
+endSurfing = 60
 
 def abrir_navegador(web): 
     webbrowser.open(web)
@@ -60,9 +61,11 @@ while True:
     else:
         now = datetime.now()
         diff = now - lastMouseMove
-        if (diff.total_seconds() >= 3):
-            pyg.moveRel(10, 10, .5)
+        if (diff.total_seconds() >= 10):
+            pyg.moveRel(20, 20, .5)
+            lastMouseMove = datetime.now()
         if (diff.total_seconds() >= endSurfing):
             cerrar_navegador()
+            lastSurf = datetime.now()
             surfing = False
 
