@@ -64,6 +64,10 @@ def closePrevTab():
         pyg.press("w")
 
 while True:
+    aw = pyg.getActiveWindow()
+    while "Brave" not in aw.title:
+        aw = pyg.getActiveWindow()
+        time.sleep(1)
     if (surfing == False):
         rand_web = random.choice(webs)
         startedSurfing = datetime.now()
