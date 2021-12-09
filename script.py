@@ -49,20 +49,32 @@ def openBrowser(web):
     webbrowser.open(web)
 
 def closeBrowser():
+    keepGoing = True
     aw = pyg.getActiveWindow()
-    while "Brave" not in aw.title or not hasattr(aw, "title"):
-        aw = pyg.getActiveWindow()
-        time.sleep(15)
+    while keepGoing:
+        if hasattr(aw, "title"):
+            if "Brave" in aw.title:
+                aw = pyg.getActiveWindow()
+                time.sleep(15)
+                continue
+            keepGoing = False
+            break
     with pyg.hold("ctrl"):
         pyg.press("f4")
     return
 
 def closePrevTab():
+    keepGoing = True
     time.sleep(1)
     aw = pyg.getActiveWindow()
-    while "Brave" not in aw.title or not hasattr(aw, "title"):
-        aw = pyg.getActiveWindow()
-        time.sleep(1)
+    while keepGoing:
+        if hasattr(aw, "title"):
+            if "Brave" in aw.title:
+                aw = pyg.getActiveWindow()
+                time.sleep(15)
+                continue
+            keepGoing = False
+            break
     with pyg.hold("ctrl"):
         pyg.press("1")
         time.sleep(.5)
@@ -80,9 +92,15 @@ while True:
         closePrevTab()
     else:
         aw = pyg.getActiveWindow()
-        while "Brave" not in aw.title or not hasattr(aw, "title"):
-            aw = pyg.getActiveWindow()
-            time.sleep(15)
+        keepGoing = True
+        while keepGoing:
+            if hasattr(aw, "title"):
+                if "Brave" in aw.title:
+                    aw = pyg.getActiveWindow()
+                    time.sleep(15)
+                    continue
+                keepGoing = False
+                break
         
         now = datetime.now()
         if (random.randint(1, 10) == 3):
