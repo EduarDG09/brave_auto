@@ -42,7 +42,6 @@ endSurfing = 20
 
 def abrir_navegador(web): 
     webbrowser.open(web)
-    surfing = True
 
 def cerrar_navegador():
     aw = pyg.getActiveWindow()
@@ -56,6 +55,7 @@ def cerrar_navegador():
 while True:
     if (surfing == False):
         rand_web = random.choice(webs)
+        surfing = True
         abrir_navegador(rand_web)
     else:
         now = datetime.now()
