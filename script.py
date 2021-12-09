@@ -53,12 +53,11 @@ def closeBrowser():
     aw = pyg.getActiveWindow()
     while keepGoing:
         if hasattr(aw, "title"):
-            if "Brave" not in aw.title:
-                aw = pyg.getActiveWindow()
-                time.sleep(15)
-                continue
-            keepGoing = False
-            break
+            if "Brave" in aw.title:
+                keepGoing = False
+                break
+        aw = pyg.getActiveWindow()
+        time.sleep(15)
     with pyg.hold("ctrl"):
         pyg.press("f4")
     return
@@ -69,12 +68,11 @@ def closePrevTab():
     aw = pyg.getActiveWindow()
     while keepGoing:
         if hasattr(aw, "title"):
-            if "Brave" not in aw.title:
-                aw = pyg.getActiveWindow()
-                time.sleep(15)
-                continue
-            keepGoing = False
-            break
+            if "Brave" in aw.title:
+                keepGoing = False
+                break
+        aw = pyg.getActiveWindow()
+        time.sleep(15)
     with pyg.hold("ctrl"):
         pyg.press("1")
         time.sleep(.5)
@@ -95,15 +93,15 @@ while True:
         keepGoing = True
         while keepGoing:
             if hasattr(aw, "title"):
-                if "Brave" not in aw.title:
-                    aw = pyg.getActiveWindow()
-                    time.sleep(15)
-                    continue
-                keepGoing = False
-                break
+                if "Brave" in aw.title:
+                    keepGoing = False
+                    break
+            aw = pyg.getActiveWindow()
+            time.sleep(15)
+                
         
         now = datetime.now()
-        if (random.randint(1, 10) == 3):
+        if (random.randint(1, 15) == 3):
             pyg.scroll(-100)
         if ((now - lastMouseMove).total_seconds() >= random.choice([10, 30, 45, 5])):
             width, height = pyg.size()
