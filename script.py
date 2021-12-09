@@ -73,7 +73,7 @@ while True:
     else:
         now = datetime.now()
         if (random.randint(1, 3) == 3):
-            pyg.scroll(200)
+            pyg.scroll(-50)
         if ((now - lastMouseMove).total_seconds() >= random.choice([10, 30, 45, 5])):
             width, height = pyg.size()
             pyg.moveTo(random.randrange(0, width), random.randrange(0, height), .5)
