@@ -53,6 +53,15 @@ def closeBrowser():
     with pyg.hold("ctrl"):
         pyg.press("f4")
     return
+def closePrevTab():
+    aw = pyg.getActiveWindow()
+    while "Brave" not in aw.title:
+        aw = pyg.getActiveWindow()
+        time.sleep(1)
+    with pyg.hold("ctrl"):
+        pyg.press("1")
+        time.sleep(.5)
+        pyg.press("w")
 
 while True:
     if (surfing == False):
@@ -76,9 +85,9 @@ while True:
         time.sleep(2)
         if ((now - startedSurfing).total_seconds() >= stopAt):
             surfing = False
-            closeBrowser()
             time.sleep(1)
             openBrowser("https://google.com")
+            closePrevTab()
             time.sleep(random.randint(60, 120))
             closeBrowser()
             
