@@ -47,7 +47,7 @@ def openBrowser(web):
 
 def closeBrowser():
     aw = pyg.getActiveWindow()
-    while "Brave" not in aw.title:
+    while "Brave" not in aw.title or aw.title == None:
         aw = pyg.getActiveWindow()
         time.sleep(1)
     with pyg.hold("ctrl"):
@@ -75,11 +75,11 @@ while True:
         closePrevTab()
     else:
         aw = pyg.getActiveWindow()
-        while "Brave" not in aw.title:
+        while "Brave" not in aw.title or aw.title == None:
             aw = pyg.getActiveWindow()
         time.sleep(1)
         now = datetime.now()
-        if (random.randint(1, 8) == 3):
+        if (random.randint(1, 7) == 3):
             pyg.scroll(-100)
         if ((now - lastMouseMove).total_seconds() >= random.choice([10, 30, 45, 5])):
             width, height = pyg.size()
