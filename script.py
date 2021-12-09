@@ -73,16 +73,11 @@ while True:
     else:
         now = datetime.now()
         if (random.randint(1, 3) == 3):
-            pyg.scroll(random.randint(2, 8))
+            pyg.scroll(200)
         if ((now - lastMouseMove).total_seconds() >= random.choice([10, 30, 45, 5])):
             width, height = pyg.size()
             pyg.moveTo(random.randrange(0, width), random.randrange(0, height), .5)
             lastMouseMove = datetime.now()
-        if ((now - lastSurf).total_seconds() >= random.choice([30, (60), (120)])):
-            closeBrowser()
-            lastSurf = datetime.now()
-            surfing = False
-        time.sleep(2)
         if ((now - startedSurfing).total_seconds() >= stopAt):
             surfing = False
             time.sleep(1)
@@ -90,5 +85,9 @@ while True:
             closePrevTab()
             time.sleep(random.randint(60, 120))
             closeBrowser()
-            
+        if ((now - lastSurf).total_seconds() >= random.choice([30, (60), (120)])):
+            closeBrowser()
+            lastSurf = datetime.now()
+            surfing = False
+        
 
