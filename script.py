@@ -80,7 +80,7 @@ while True:
             aw = pyg.getActiveWindow()
             time.sleep(15)
         now = datetime.now()
-        if (random.randint(1, 7) == 3):
+        if (random.randint(1, 8) == 3):
             pyg.scroll(-100)
         if ((now - lastMouseMove).total_seconds() >= random.choice([10, 30, 45, 5])):
             width, height = pyg.size()
