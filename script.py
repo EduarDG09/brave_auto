@@ -47,7 +47,7 @@ def openBrowser(web):
 
 def closeBrowser():
     aw = pyg.getActiveWindow()
-    while "Brave" not in aw.title or aw.title == None:
+    while "Brave" not in aw.title or not hasattr(aw, "title"):
         aw = pyg.getActiveWindow()
         time.sleep(1)
     with pyg.hold("ctrl"):
@@ -75,7 +75,7 @@ while True:
         closePrevTab()
     else:
         aw = pyg.getActiveWindow()
-        while "Brave" not in aw.title or aw.title == None:
+        while "Brave" not in aw.title or not hasattr(aw, "title"):
             aw = pyg.getActiveWindow()
         time.sleep(1)
         now = datetime.now()
@@ -83,7 +83,7 @@ while True:
             pyg.scroll(-100)
         if ((now - lastMouseMove).total_seconds() >= random.choice([10, 30, 45, 5])):
             width, height = pyg.size()
-            pyg.moveTo(random.randrange(0, width), random.randrange(0, height), .5)
+            pyg.moveTo(random.randrange(0, width), random.randrange(80, height-80), .5)
             lastMouseMove = datetime.now()
         if ((now - startedSurfing).total_seconds() >= stopAt):
             openBrowser("https://google.com")
