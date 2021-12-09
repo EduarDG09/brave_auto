@@ -39,12 +39,13 @@ webs = ["https://2captcha.com/",
 surfing = False
 lastMouseMove = datetime.now()
 lastSurf = datetime.now()
-endSurfing = 60
+startedSurfing = 0
+stopAt = 120
 
-def abrir_navegador(web): 
+def openBrowser(web): 
     webbrowser.open(web)
 
-def cerrar_navegador():
+def closeBrowser():
     aw = pyg.getActiveWindow()
     while "Brave" not in aw.title:
         aw = pyg.getActiveWindow()
@@ -57,15 +58,26 @@ while True:
     if (surfing == False):
         rand_web = random.choice(webs)
         surfing = True
-        abrir_navegador(rand_web)
+        startedSurfing = datetime.now()
+        stopAt = random.randint(60, 120)
+        openBrowser(rand_web)
     else:
         now = datetime.now()
-        if ((now - lastMouseMove).total_seconds() >= 10):
+        if (random.randint(1, 3) == 3):
+            pyg.scroll(random.randint(2, 8))
+        if ((now - lastMouseMove).total_seconds() >= random.choice(10, 30, 45, 5)):
             width, height = pyg.size()
             pyg.moveTo(random.randrange(0, width), random.randrange(0, height), .5)
             lastMouseMove = datetime.now()
-        if ((now - lastSurf).total_seconds() >= endSurfing):
-            cerrar_navegador()
+        if ((now - lastSurf).total_seconds() >= random.choice([(30*60), (60*60), (45*60)])):
+            closeBrowser()
             lastSurf = datetime.now ()
             surfing = False
+        time.sleep(2)
+        if ((now - startedSurfing).total_seconds >= stopAt):
+            surfing = False
+            closeBrowser()
+            time.sleep(1)
+            openBrowser("https://google.com")
+            time.sleep(random.randint(60, 120))
 
