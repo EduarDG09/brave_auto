@@ -74,7 +74,7 @@ while True:
             lastSurf = datetime.now ()
             surfing = False
         time.sleep(2)
-        if ((now - startedSurfing).total_seconds >= stopAt):
+        if ((now - startedSurfing).total_seconds() >= stopAt):
             surfing = False
             closeBrowser()
             time.sleep(1)
