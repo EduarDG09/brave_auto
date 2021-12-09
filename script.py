@@ -67,7 +67,7 @@ while True:
     if (surfing == False):
         rand_web = random.choice(webs)
         startedSurfing = datetime.now()
-        stopAt = random.randint(60, 120)
+        stopAt = 240
         surfing = True
         openBrowser(rand_web)
     else:
