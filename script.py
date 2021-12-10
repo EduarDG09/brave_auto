@@ -101,7 +101,7 @@ while True:
                 
         
         now = datetime.now()
-        if (random.randint(1, 15) == 3):
+        if (random.randint(1, 50) == 3):
             pyg.scroll(-100)
         if ((now - lastMouseMove).total_seconds() >= random.choice([10, 30, 45, 5])):
             width, height = pyg.size()
