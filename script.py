@@ -45,7 +45,7 @@ stopAt = random.choice([(2*60*60), (60*60), (3*60*60)])
 pagTime = random.choice([(20*60), (15*60), (30*60)])
 
 def openBrowser(web): 
-    logging.info("Navegando " + web + "...")
+    print("Navegando " + web + "...")
     webbrowser.open(web)
 
 def closeBrowser():
@@ -78,7 +78,7 @@ def closePrevTab():
         time.sleep(.5)
         pyg.press("w")
 
-logging.info("Inicia el bot!")
+print("Inicia el bot!")
 while True:
     if (surfing == False):
         rand_web = random.choice(webs)
@@ -108,7 +108,7 @@ while True:
             pyg.moveTo(random.randrange(0, width), random.randrange(80, height-80), .75)
             lastMouseMove = datetime.now()
         if ((now - lastSurf).total_seconds() >= pagTime):
-            logging.info("Tiempo gastado en la página: " + str(pagTime) + " segundos.")
+            print("Tiempo gastado en la página: " + str(pagTime) + " segundos.")
             pagTime = random.choice([(20*60), (15*60), (30*60)])
             lastSurf = datetime.now()
             surfing = False
@@ -116,7 +116,7 @@ while True:
             openBrowser("https://google.com")
             closePrevTab()
             sleepFor = random.choice([(5*60*60), (8*60*60), (12*60*60)])
-            logging.info("Descansando por: " + str(sleepFor/3600) + " horas.")
+            print("Descansando por: " + str(sleepFor/3600) + " horas.")
             time.sleep(sleepFor)
             surfing = False
             startedSurfing = datetime.now()
